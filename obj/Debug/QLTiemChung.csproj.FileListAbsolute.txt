@@ -757,3 +757,4 @@ C:\Users\AS\OneDrive\Desktop\ql tiêm chủng\QLTiemChung\obj\Debug\QLTiemChung.
 C:\Users\AS\OneDrive\Desktop\ql tiêm chủng\QLTiemChung\obj\Debug\QLTiemChung.csproj.CopyComplete
 C:\Users\AS\OneDrive\Desktop\ql tiêm chủng\QLTiemChung\obj\Debug\QLTiemChung.exe
 C:\Users\AS\OneDrive\Desktop\ql tiêm chủng\QLTiemChung\obj\Debug\QLTiemChung.pdb
+C:\Users\AS\OneDrive\Desktop\ql tiêm chủng\QLTiemChung\obj\Debug\QLTiemChung.Formtest.resources
