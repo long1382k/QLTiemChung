@@ -12,7 +12,98 @@ namespace DXApplication2
 {
      class KetNoi
      {
-
+          public int checkDateWithToday(string s)
+          {
+               int dd = 0;
+               int mm = 0;
+               int yy = 0;
+               s = s + "/";
+               int c = 0, now = 0;
+               for (int i = 0; i < s.Length; ++i)
+               {
+                    if (s[i] == '/')
+                    {
+                         if (c == 0) mm = now;
+                         if (c == 1) dd = now;
+                         if (c == 2) yy = now;
+                         c++; now = 0; continue;
+                    }
+                    now = now * 10 + s[i] - '0';
+               }
+               if (yy > DateTime.Now.Year)
+                    return 1;
+               else if (yy < DateTime.Now.Year)
+                    return -1;
+               else
+               {
+                    if (mm > DateTime.Now.Month)
+                         return 1;
+                    else if (mm < DateTime.Now.Month)
+                         return -1;
+                    else
+                    {
+                         if (dd > DateTime.Now.Day)
+                              return 1;
+                         else if (mm < DateTime.Now.Day)
+                              return -1;
+                         else return 0;
+                    }
+               }
+          }
+          public int checkDateWithDate(string date1, string date2)
+          {
+               int dd1 = 0;
+               int mm1 = 0;
+               int yy1 = 0;
+               int dd2 = 0;
+               int mm2 = 0;
+               int yy2 = 0;
+               date1 = date1 + "/";
+               date2 = date2 + "/";
+               int c = 0, now = 0;
+               for (int i = 0; i < date1.Length; ++i)
+               {
+                    if (date1[i] == '/')
+                    {
+                         if (c == 0) mm1 = now;
+                         if (c == 1) dd1 = now;
+                         if (c == 2) yy1 = now;
+                         c++; now = 0; continue;
+                    }
+                    now = now * 10 + date1[i] - '0';
+               }
+               c = now = 0;
+               for (int i = 0; i < date2.Length; ++i)
+               {
+                    if (date2[i] == '/')
+                    {
+                         if (c == 0) mm2 = now;
+                         if (c == 1) dd2 = now;
+                         if (c == 2) yy2 = now;
+                         c++; now = 0; continue;
+                    }
+                    now = now * 10 + date2[i] - '0';
+               }
+               if (yy1 > yy2)
+                    return 1;
+               else if (yy1 < yy2)
+                    return -1;
+               else
+               {
+                    if (mm1 > mm2)
+                         return 1;
+                    else if (mm1 < mm2)
+                         return -1;
+                    else
+                    {
+                         if (dd1 > dd2)
+                              return 1;
+                         else if (mm1 < mm2)
+                              return -1;
+                         else return 0;
+                    }
+               }
+          }
           public SqlConnection connection = new SqlConnection();
           public void OpenConnection()
           {
@@ -77,19 +168,7 @@ namespace DXApplication2
                return data;
           }
 
-          public DataTable LoadDataHaveID(string proc, string param, string value)
-          {
-               DataTable table = new DataTable();
-               SqlCommand command = new SqlCommand();
-               command.Connection = connection;
-               command.CommandType = CommandType.StoredProcedure;
-               command.CommandText = proc;
-               command.Parameters.AddWithValue(param, SqlDbType.VarChar).Value = value;
-               SqlDataAdapter adapter = new SqlDataAdapter(command);
-               adapter.Fill(table);
-               connection.Close();
-               return table;
-          }
+          
 
           // load du lieu khong dieu kien
           public DataTable LoadData(string TT)
@@ -104,7 +183,17 @@ namespace DXApplication2
                connection.Close();
                return data;
           }
-
+          public DataTable LoadDataFromFunc(string query)
+          {
+               DataTable dt = new DataTable();
+               using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-3PM2V18\\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Security=True"));
+               {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dt);
+               }
+               return dt;
+          }
           public void BacSi(string proc, string ma, string ten, string NS, string GT, string TD, string SDT)
           {
                try
@@ -141,7 +230,7 @@ namespace DXApplication2
                return table;
           }
 
-          public DataTable LoadDataSearch(string proc, string ma, string hoten, string ns1, string ns2, string gt, string td, string sdt)
+          public DataTable LoadDataSearchBS(string proc, string ma, string hoten, string ns1, string ns2, string gt, string td, string sdt)
           {
                DataTable table = new DataTable();
                SqlCommand command = new SqlCommand();
@@ -160,7 +249,24 @@ namespace DXApplication2
                connection.Close();
                return table;
           }
-
+          public DataTable LoadDataSearchYTa_NV(string proc, string paramma, string paramten, string paramdate1, string paramdate2, string paramgt, string paramsdt, string ma, string hoten, string ns1, string ns2, string gt, string sdt)
+          {
+               DataTable table = new DataTable();
+               SqlCommand command = new SqlCommand();
+               command.Connection = connection;
+               command.CommandType = CommandType.StoredProcedure;
+               command.CommandText = proc;
+               command.Parameters.AddWithValue(paramma, SqlDbType.VarChar).Value = ma;
+               command.Parameters.AddWithValue(paramten, SqlDbType.NVarChar).Value = hoten;
+               command.Parameters.AddWithValue(paramdate1, SqlDbType.Date).Value = ns1;
+               command.Parameters.AddWithValue(paramdate2, SqlDbType.Date).Value = ns2;
+               command.Parameters.AddWithValue(paramgt, SqlDbType.NVarChar).Value = gt;
+               command.Parameters.AddWithValue(paramsdt, SqlDbType.VarChar).Value = sdt;
+               SqlDataAdapter adapter = new SqlDataAdapter(command);
+               adapter.Fill(table);
+               connection.Close();
+               return table;
+          }
           // load du lieu 1 chi tiet toa thuoc bat ki
           public DataTable LoadDataCTDK(string MaToa, string MaThuoc)
           {
@@ -222,7 +328,26 @@ namespace DXApplication2
                return table;
           }
 
-
+          public void Yta_NV(string proc, string paramMa, string paramTen, string paramNS, string paramGT, string paramSDT, string ma, string ten, string NS, string GT, string SDT)
+          {
+               try
+               {
+                    SqlCommand command = new SqlCommand(proc, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(paramMa, SqlDbType.VarChar).Value = ma;
+                    command.Parameters.AddWithValue(paramTen, SqlDbType.NVarChar).Value = ten;
+                    command.Parameters.AddWithValue(paramNS, SqlDbType.Date).Value = NS;
+                    command.Parameters.AddWithValue(paramGT, SqlDbType.NVarChar).Value = GT;
+                    command.Parameters.AddWithValue(paramSDT, SqlDbType.VarChar).Value = SDT;
+                    command.ExecuteNonQuery();
+                    connection.Close();
+               }
+               catch (Exception ex)
+               {
+                    XtraMessageBox.Show(ex.Message);
+                    connection.Close();
+               }
+          }
           // Them, sua Benh Nhan
           public void BenhNhan(string pro, string MaBN, string HoTen, string GioiTinh, string NgaySinh, string DiaChi, string SDT)
           {

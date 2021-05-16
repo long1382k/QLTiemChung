@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DXApplication2.code
+namespace QLTiemChung.code
 {
-     public partial class FormHoaDon : DevExpress.XtraEditors.XtraForm
+     public partial class XtraFormDN : DevExpress.XtraEditors.XtraForm
      {
-          public FormHoaDon()
+          public XtraFormDN()
           {
                InitializeComponent();
           }

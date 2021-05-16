@@ -10,44 +10,56 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
 using DevExpress.XtraReports.UI;
+using QLTiemChung.code;
+using DevExpress.XtraLayout;
 
 namespace DXApplication2
 {
-     public partial class FormBacSi : Form
+     public partial class FormBacSi : UserControl
      {
           string flag;
+          private static FormBacSi _instance;
+          public static FormBacSi Instance
+          {
+               get
+               {
+                    if (_instance == null)
+                         _instance = new FormBacSi();
+                    return _instance;
+               }
+          }
+          
           public FormBacSi()
           {
                InitializeComponent();
                dataBacSi.ReadOnly = true;
+               //gridViewBS.OptionsBehavior.ReadOnly = true;
+               /*LayoutControl lc = new LayoutControl();
+               lc.Dock = DockStyle.Fill;
+               this.Controls.Add(lc);
+               this.Dock = DockStyle.Fill;*/
           }
-
-          private void FormBacSi_Load(object sender, EventArgs e)
-          {
-               layoutThongTinBS.Enabled = false;
-               btnLuuBS.Enabled = false;
-               getData();
-          }
-         
           public void getData()
           {
                KetNoi kn = new KetNoi();
+               kn.OpenConnection();
+               //gridControl1.DataSource = kn.LoadData("HienThiDSBacSi");
                dataBacSi.DataSource = kn.LoadData("HienThiDSBacSi");
                for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
                {
                     dataBacSi.Rows[i].Cells[0].Value = i + 1;
+                    //gridViewBS.FocusedRowHandle();
                }
-               kn.OpenConnection();
           }
           public void getDataTimKiem()
           {
                KetNoi kn = new KetNoi();
+               kn.OpenConnection();
                dataBacSi.DataSource = kn.LoadData("TimKiemBS");
                for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
                {
                     dataBacSi.Rows[i].Cells[0].Value = i + 1;
                }
-               kn.OpenConnection();
           }
           public void TaoMaBSMoi()
           {
@@ -143,12 +155,14 @@ namespace DXApplication2
                txtTrinhDo.Text = "";
                txtSDTBS.Text = "";
           }
+
           private void btnThemBS_Click(object sender, EventArgs e)
           {
                mo();
                flag = "add";
                clear();
                TaoMaBSMoi();
+
           }
 
           private void btnSuaBS_Click(object sender, EventArgs e)
@@ -163,6 +177,7 @@ namespace DXApplication2
                mo();
                flag = "delete";
                layoutThongTinBS.Enabled = false;
+
           }
 
           private void btnLuuBS_Click(object sender, EventArgs e)
@@ -175,7 +190,7 @@ namespace DXApplication2
                KetNoi kn = new KetNoi();
                if (flag == "add")
                {
-                    if (kn.LoadDataHaveID("BacSiBietMa", "@MaBS", txtMaBS.Text).Rows.Count == 1)
+                    if (kn.LoadDataDK("BacSiBietMa", "@MaBS", txtMaBS.Text).Rows.Count == 1)
                          XtraMessageBox.Show("Mã bác sĩ đã có trong danh sách");
                     else
                     {
@@ -185,7 +200,7 @@ namespace DXApplication2
                }
                if (flag == "edit")
                {
-                    if (kn.LoadDataHaveID("BacSiBietMa", "@MaBS", txtMaBS.Text).Rows.Count == 0)
+                    if (kn.LoadDataDK("BacSiBietMa", "@MaBS", txtMaBS.Text).Rows.Count == 0)
                          XtraMessageBox.Show("Không tìm thấy mã bác sĩ để sửa ");
                     else
                     {
@@ -195,7 +210,7 @@ namespace DXApplication2
                }
                if (flag == "delete")
                {
-                    if (kn.LoadDataHaveID("BacSiBietMa", "@MaBS", txtMaBS.Text).Rows.Count == 0)
+                    if (kn.LoadDataDK("BacSiBietMa", "@MaBS", txtMaBS.Text).Rows.Count == 0)
                          XtraMessageBox.Show("Không tìm thấy mã bác sĩ để xóa ");
                     else
                     {
@@ -205,35 +220,7 @@ namespace DXApplication2
                     }
                }
                getData();
-          }
 
-          private void dataBacSi_MouseClick(object sender, MouseEventArgs e)
-          {
-               
-                    int index = dataBacSi.CurrentRow.Index;
-                    txtMaBS.Text = dataBacSi.Rows[index].Cells[1].Value.ToString();
-                    txtHoTenBS.Text = dataBacSi.Rows[index].Cells[2].Value.ToString();
-                    dateBS.Text = dataBacSi.Rows[index].Cells[4].Value.ToString();
-                    txtGTBS.Text = dataBacSi.Rows[index].Cells[6].Value.ToString();
-                    txtTrinhDo.Text = dataBacSi.Rows[index].Cells[5].Value.ToString();
-                    txtSDTBS.Text = dataBacSi.Rows[index].Cells[3].Value.ToString();
-          }
-
-          private void btnBatDauTKBS_Click(object sender, EventArgs e)
-          {
-               mo();
-               clear();
-          }
-
-          private void btnTimKiemBS_Click(object sender, EventArgs e)
-          {
-               KetNoi kn = new KetNoi();
-               kn.OpenConnection();
-               dataBacSi.DataSource = kn.LoadDataSearch("TimKiemBS", txtMaBS.Text, txtHoTenBS.Text, dateBS.Text, dateBS1.Text, txtGTBS.Text, txtTrinhDo.Text, txtSDTBS.Text);
-               for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
-               {
-                    dataBacSi.Rows[i].Cells[0].Value = i + 1;
-               }
           }
 
           private void btnHuyBS_Click(object sender, EventArgs e)
@@ -241,34 +228,128 @@ namespace DXApplication2
                khoa();
           }
 
+          private void btnBatDauTKBS_Click(object sender, EventArgs e)
+          {
+               mo();
+               clear();
+               btnTimKiemBS.Enabled = true;
+
+          }
+
+          private void btnTimKiemBS_Click(object sender, EventArgs e)
+          {
+               KetNoi kn = new KetNoi();
+               kn.OpenConnection();
+               dataBacSi.DataSource = kn.LoadDataSearchBS("TimKiemBS", txtMaBS.Text, txtHoTenBS.Text, dateBS.Text, dateBS1.Text, txtGTBS.Text, txtTrinhDo.Text, txtSDTBS.Text);
+               for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
+               {
+                    dataBacSi.Rows[i].Cells[0].Value = i + 1;
+               }
+
+          }
+
+          private void btnBCBS_Click(object sender, EventArgs e)
+          {
+               KetNoi kn = new KetNoi();
+               DataTable dt = kn.LoadDataDK("XuatBS", "@MaBS", txtMaBS.Text);
+               if (dt.Rows.Count == 0)
+               {
+                    XtraMessageBox.Show("Không có dữ liệu để xuất");
+               }
+               else
+               {
+                    XtraReportBS reportBS = new XtraReportBS();
+                    reportBS.DataSource = dt;
+                    reportBS.ShowPreviewDialog();
+               }
+
+          }
+
           private void btnXuatExcelBN_Click(object sender, EventArgs e)
           {
                KetNoi kn = new KetNoi();
-               DataTable dt = kn.LoadData("XuatDanhSachBS");
+               DataTable dt = kn.LoadData("HienThiDSBacSi");
                if (dt.Rows.Count == 0)
                     XtraMessageBox.Show("Không có dữ liệu để xuất");
                else
                {
                     kn.OpenConnection();
-                    kn.LoadDataSet("XuatDanhSachBS").WriteXml(@"E:\Danh sách bác sĩ.xls");
+                    kn.LoadDataSet("HienThiDSBacSi").WriteXml(@"E:\Danh sách bác sĩ.xls");
                     XtraMessageBox.Show("Xuất thành công");
+               }
+
+          }
+
+          private void FormBacSi_Load(object sender, EventArgs e)
+          {
+               layoutThongTinBS.Enabled = false;
+               btnLuuBS.Enabled = false;
+               btnHuyBS.Enabled = false;
+               btnTimKiemBS.Enabled = false;
+               getData();
+
+          }
+
+          private void dataBacSi_CellClick(object sender, DataGridViewCellEventArgs e)
+          {
+               int index = dataBacSi.CurrentRow.Index;
+               txtMaBS.Text = dataBacSi.Rows[index].Cells[1].Value.ToString();
+               txtHoTenBS.Text = dataBacSi.Rows[index].Cells[2].Value.ToString();
+               dateBS.Text = dataBacSi.Rows[index].Cells[4].Value.ToString();
+               txtGTBS.Text = dataBacSi.Rows[index].Cells[6].Value.ToString();
+               txtTrinhDo.Text = dataBacSi.Rows[index].Cells[5].Value.ToString();
+               txtSDTBS.Text = dataBacSi.Rows[index].Cells[3].Value.ToString();
+
+          }
+
+          private void btnBSNghiHuu_Click(object sender, EventArgs e)
+          {
+               int i = 0;
+               KetNoi kn = new KetNoi();
+               dataBacSi.DataSource = kn.LoadDataFromFunc("Select * from BSNghiHuu()");
+               for (i = 0; i < dataBacSi.Rows.Count - 1; i++)
+               {
+                    dataBacSi.Rows[i].Cells[0].Value = i + 1;
+               }
+               if (i == 0)
+               {
+                    XtraMessageBox.Show("Không có bác sĩ nào nghỉ hưu trong năm nay");
+                    getData();
                }
           }
 
-          private void btnXuatBCBS_Click(object sender, EventArgs e)
+          private void btnThoatBS_Click(object sender, EventArgs e)
           {
-               KetNoi kn = new KetNoi();
-               DataTable dt = kn.LoadDataHaveID("XuatBS","@MaBS",txtMaBS.Text);
-               if (dt.Rows.Count == 0)
+               getData();
+          }
+
+          private void dateBS_Validating(object sender, CancelEventArgs e)
+          {
+               string s = dateBS.Text;
+               int yy = 0;
+               s = s + "/";
+               int c = 0, now = 0;
+               for (int i = 0; i < s.Length; ++i)
                {
-                    XtraMessageBox.Show("Không có dữ liệu để xuất");
+                    if (s[i] == '/')
+                    { 
+                         if (c == 2) yy = now;
+                         c++; now = 0; continue;
+                    }
+                    now = now * 10 + s[i] - '0';
                }
-               //else
-               //{
-               //     XtraReportBS reportBS = new XtraReportBS();
-               //     reportBS.DataSource = dt;
-               //     reportBS.ShowPreviewDialog();
-               //}
+               if (DateTime.Now.Year - yy < 27 || DateTime.Now.Year - yy > 54)
+               {
+                    e.Cancel = true;
+                    dateBS.Focus();
+                    dxErrorProvider1.SetError(dateBS, "Chỉ tuyển dụng bác sĩ từ 27 đến 54 tuổi");
+               }
+               else
+               {
+                    e.Cancel = false;
+                    dxErrorProvider1.SetError(dateBS, null);
+               } 
+                    
           }
      }
 }
