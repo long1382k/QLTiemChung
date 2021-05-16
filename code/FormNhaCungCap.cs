@@ -11,10 +11,20 @@ using DevExpress.XtraEditors;
 
 namespace DXApplication2
 {
-     public partial class Form1 : DevExpress.XtraEditors.XtraForm
+     public partial class FormNhaCungCap : DevExpress.XtraEditors.XtraUserControl
      {
           public static int kt = 0;//biến kiểm tra lưu, sửa , xóa
-          public Form1()
+          private static FormNhaCungCap _instance;
+          public static FormNhaCungCap Instance
+          {
+               get
+               {
+                    if (_instance == null)
+                         _instance = new FormNhaCungCap();
+                    return _instance;
+               }
+          }
+          public FormNhaCungCap()
           {
                InitializeComponent();
                DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Xmas 2008 Blue");
