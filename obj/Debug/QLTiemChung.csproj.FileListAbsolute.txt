@@ -1173,3 +1173,4 @@ D:\tai lieu nam thu 3 2020 - 2021 hoc ky 2\Thuc tap co so du lieu\Chuong trinh Q
 D:\tai lieu nam thu 3 2020 - 2021 hoc ky 2\Thuc tap co so du lieu\Chuong trinh QLTC\QLTiemChung\obj\Debug\QLTiemChung.exe
 D:\tai lieu nam thu 3 2020 - 2021 hoc ky 2\Thuc tap co so du lieu\Chuong trinh QLTC\QLTiemChung\obj\Debug\QLTiemChung.pdb
 D:\tai lieu nam thu 3 2020 - 2021 hoc ky 2\Thuc tap co so du lieu\Chuong trinh QLTC\QLTiemChung\obj\Debug\DXApplication2.FormKho.resources
+D:\tai lieu nam thu 3 2020 - 2021 hoc ky 2\Thuc tap co so du lieu\Chuong trinh QLTC\QLTiemChung\obj\Debug\DXApplication2.FormVaccine.resources

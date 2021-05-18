@@ -75,5 +75,11 @@ namespace DXApplication2
             panelControl1.Controls.Clear();
             panelControl1.Controls.Add(FormKho.Instance);
         }
+
+        private void barVaccine_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            panelControl1.Controls.Clear();
+            panelControl1.Controls.Add(FormVaccine.Instance);
+        }
     }
 }

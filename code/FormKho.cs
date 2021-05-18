@@ -186,7 +186,5 @@ namespace DXApplication2
                 //ShowDetail(dataset, index);
             }
         }
-
-        
     }
 }

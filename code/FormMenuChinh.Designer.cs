@@ -167,6 +167,7 @@ namespace DXApplication2
             this.barVaccine.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barVaccine.ImageOptions.Image")));
             this.barVaccine.Name = "barVaccine";
             this.barVaccine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barVaccine.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barVaccine_ItemClick);
             // 
             // barHD
             // 
