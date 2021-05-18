@@ -114,7 +114,7 @@ namespace DXApplication2
           {
                try
                {
-                    connection.ConnectionString = "Data Source=DESKTOP-LKSP5F9\\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Security=True";
+                    connection.ConnectionString = @"Data Source=DESKTOP-MCB6N7D\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Security=True";
                     connection.Open();
                }
                catch (Exception ex)
@@ -186,7 +186,7 @@ namespace DXApplication2
           public DataTable LoadDataFromFunc(string query)
           {
                DataTable dt = new DataTable();
-               using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-3PM2V18\\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Security=True"));
+               using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-MCB6N7D\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Security=True"));
                {
                     SqlCommand command = new SqlCommand(query, connection);
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -644,5 +644,25 @@ namespace DXApplication2
                connection.Close();
                return table;
           }
+
+        ////Phan nay cua Luu Duy Hoang
+        public void Kho(string proc, string MaKho, string TenKho, string DiaDiemKho)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand(proc, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaKho", SqlDbType.VarChar).Value = MaKho;
+                command.Parameters.AddWithValue("@TenKho", SqlDbType.NVarChar).Value = TenKho;
+                command.Parameters.AddWithValue("@DiaDiem", SqlDbType.NVarChar).Value = DiaDiemKho;
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+                connection.Close();
+            }
+        }
      }
 }
