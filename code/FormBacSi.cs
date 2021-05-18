@@ -33,28 +33,20 @@ namespace DXApplication2
           {
                InitializeComponent();
                dataBacSi.ReadOnly = true;
-               //gridViewBS.OptionsBehavior.ReadOnly = true;
-               /*LayoutControl lc = new LayoutControl();
-               lc.Dock = DockStyle.Fill;
-               this.Controls.Add(lc);
-               this.Dock = DockStyle.Fill;*/
+               getData();
           }
           public void getData()
           {
                KetNoi kn = new KetNoi();
-               kn.OpenConnection();
-               //gridControl1.DataSource = kn.LoadData("HienThiDSBacSi");
-               dataBacSi.DataSource = kn.LoadData("HienThiDSBacSi");
+               dataBacSi.DataSource = kn.LoadData("HienThiDSBacSi");   
                for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
                {
                     dataBacSi.Rows[i].Cells[0].Value = i + 1;
-                    //gridViewBS.FocusedRowHandle();
                }
           }
           public void getDataTimKiem()
           {
                KetNoi kn = new KetNoi();
-               kn.OpenConnection();
                dataBacSi.DataSource = kn.LoadData("TimKiemBS");
                for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
                {
@@ -101,16 +93,10 @@ namespace DXApplication2
                btnLuuBS.Enabled = true;
                btnHuyBS.Enabled = true;
                layoutThongTinBS.Enabled = true;
-               txtMaBS.Focus();
+               
           }
           public bool check()
           {
-               if (string.IsNullOrWhiteSpace(txtMaBS.Text))
-               {
-                    MessageBox.Show("Bạn chưa nhập mã", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtMaBS.Focus();
-                    return false;
-               }
 
                if (string.IsNullOrEmpty(txtHoTenBS.Text))
                {
@@ -220,7 +206,9 @@ namespace DXApplication2
                     }
                }
                getData();
-
+               khoa();
+               flag = "";
+               txtMaBS.ReadOnly = false;
           }
 
           private void btnHuyBS_Click(object sender, EventArgs e)
@@ -233,25 +221,31 @@ namespace DXApplication2
                mo();
                clear();
                btnTimKiemBS.Enabled = true;
-
           }
 
           private void btnTimKiemBS_Click(object sender, EventArgs e)
           {
+               int i = 0;
                KetNoi kn = new KetNoi();
-               kn.OpenConnection();
                dataBacSi.DataSource = kn.LoadDataSearchBS("TimKiemBS", txtMaBS.Text, txtHoTenBS.Text, dateBS.Text, dateBS1.Text, txtGTBS.Text, txtTrinhDo.Text, txtSDTBS.Text);
-               for (int i = 0; i < dataBacSi.Rows.Count - 1; i++)
+               for (i = 0; i < dataBacSi.Rows.Count - 1; i++)
                {
                     dataBacSi.Rows[i].Cells[0].Value = i + 1;
                }
-
+               if (i == 0)
+               {
+                    if (dateBS.Text == "" || dateBS1.Text == "")
+                         XtraMessageBox.Show("Không có bác sĩ bạn muốn tìm trong danh sách bác sĩ của trung tâm vì bạn chưa nhập khoảng ngày sinh của bác sĩ");
+                    else XtraMessageBox.Show("Không có bác sĩ bạn muốn tìm trong danh sách bác sĩ của trung tâm");
+                    getData();
+               }     
+                   
           }
 
           private void btnBCBS_Click(object sender, EventArgs e)
           {
                KetNoi kn = new KetNoi();
-               DataTable dt = kn.LoadDataDK("XuatBS", "@MaBS", txtMaBS.Text);
+               DataTable dt = kn.LoadDataDK("BacSiBietMa", "@MaBS", txtMaBS.Text);
                if (dt.Rows.Count == 0)
                {
                     XtraMessageBox.Show("Không có dữ liệu để xuất");
@@ -286,8 +280,7 @@ namespace DXApplication2
                btnLuuBS.Enabled = false;
                btnHuyBS.Enabled = false;
                btnTimKiemBS.Enabled = false;
-               getData();
-
+               getData(); 
           }
 
           private void dataBacSi_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -338,18 +331,32 @@ namespace DXApplication2
                     }
                     now = now * 10 + s[i] - '0';
                }
-               if (DateTime.Now.Year - yy < 27 || DateTime.Now.Year - yy > 54)
+               if (flag == "add")
                {
-                    e.Cancel = true;
-                    dateBS.Focus();
-                    dxErrorProvider1.SetError(dateBS, "Chỉ tuyển dụng bác sĩ từ 27 đến 54 tuổi");
+                    if (DateTime.Now.Year - yy < 27 || DateTime.Now.Year - yy > 54)
+                    {
+                         e.Cancel = true;
+                         dxErrorProvider1.SetError(dateBS, "Chỉ tuyển dụng bác sĩ từ 27 đến 54 tuổi");
+                    }
+                    else
+                    {
+                         e.Cancel = false;
+                         dxErrorProvider1.SetError(dateBS, null);
+                    }
                }
-               else
+               if (flag == "edit")
                {
-                    e.Cancel = false;
-                    dxErrorProvider1.SetError(dateBS, null);
-               } 
-                    
+                    if (DateTime.Now.Year - yy < 27 || DateTime.Now.Year - yy > 54)
+                    {
+                         e.Cancel = true;
+                         dxErrorProvider1.SetError(dateBS, "Chỉ được sửa thành ngày sinh mới trong khoảng từ 27 đến 54 tuổi");
+                    }
+                    else
+                    {
+                         e.Cancel = false;
+                         dxErrorProvider1.SetError(dateBS, null);
+                    }
+               }
           }
      }
 }

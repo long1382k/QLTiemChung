@@ -31,7 +31,7 @@ namespace DXApplication2
           {
                InitializeComponent();
                dataNV.ReadOnly = true;
-               DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Xmas 2008 Blue");
+               getData();
           }
 
           private void FormNhanVien_Load(object sender, EventArgs e)
@@ -40,8 +40,6 @@ namespace DXApplication2
                btnLuuNV.Enabled = false;
                btnHuyNV.Enabled = false;
                btnTKNV.Enabled = false;
-               getData();
-
           }
           public void getData()
           {
@@ -50,8 +48,9 @@ namespace DXApplication2
                for (int i = 0; i < dataNV.Rows.Count - 1; i++)
                {
                     dataNV.Rows[i].Cells[0].Value = i + 1;
+                    
                }
-               kn.OpenConnection();
+               dataNV.Refresh();
           }
           public void getDataTimKiem()
           {
@@ -61,7 +60,6 @@ namespace DXApplication2
                {
                     dataNV.Rows[i].Cells[0].Value = i + 1;
                }
-               kn.OpenConnection();
           }
           public void TaoMaNVMoi()
           {
@@ -83,7 +81,6 @@ namespace DXApplication2
                     txtMaNV.Text = "";
           }
           public void khoa()
-
           {
                btnThemNV.Enabled = true;
                btnSuaNV.Enabled = true;
@@ -107,13 +104,6 @@ namespace DXApplication2
           }
           public bool check()
           {
-               if (string.IsNullOrWhiteSpace(txtMaNV.Text))
-               {
-                    MessageBox.Show("Bạn chưa nhập mã", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtMaNV.Focus();
-                    return false;
-               }
-
                if (string.IsNullOrEmpty(txtHoTenNV.Text))
                {
                     MessageBox.Show("Bạn chưa nhập họ tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -217,7 +207,9 @@ namespace DXApplication2
                     }
                }
                getData();
-
+               khoa();
+               flag = "";
+               txtMaNV.ReadOnly = false;
           }
 
           private void btnHuyNV_Click(object sender, EventArgs e)
@@ -235,20 +227,28 @@ namespace DXApplication2
 
           private void btnTKNV_Click(object sender, EventArgs e)
           {
+               int i = 0;
                KetNoi kn = new KetNoi();
                kn.OpenConnection();
                dataNV.DataSource = kn.LoadDataSearchYTa_NV("TimKiemNV", "@MaNV", "@HoTenNV", "@NgaySinhNV1", "@NgaySinhNV2", "@GioiTinhNV", "@SDTNV", txtMaNV.Text, txtHoTenNV.Text, dateNV.Text, dateNV1.Text, txtGTNV.Text, txtSDTNV.Text);
-               for (int i = 0; i < dataNV.Rows.Count - 1; i++)
+               for (i = 0; i < dataNV.Rows.Count - 1; i++)
                {
                     dataNV.Rows[i].Cells[0].Value = i + 1;
                }
-
+               if (i == 0)
+               {
+                    if (dateNV.Text == "" || dateNV1.Text == "")
+                         XtraMessageBox.Show("Không có nhân viên bạn muốn tìm trong danh sách nhân viên của trung tâm vì bạn chưa nhập khoảng ngày sinh của nhân viên");
+                    else 
+                         XtraMessageBox.Show("Không có nhân viên bạn muốn tìm trong danh sách nhân viên của trung tâm");
+                    getData();
+               }
           }
 
           private void btnXuatBCNV_Click(object sender, EventArgs e)
           {
                KetNoi kn = new KetNoi();
-               DataTable dt = kn.LoadDataDK("XuatNV", "@MaNV", txtMaNV.Text);
+               DataTable dt = kn.LoadDataDK("", "@MaNV", txtMaNV.Text);
                if (dt.Rows.Count == 0)
                {
                     XtraMessageBox.Show("Không có dữ liệu để xuất");
@@ -265,7 +265,7 @@ namespace DXApplication2
           private void btnXuatNV_Click(object sender, EventArgs e)
           {
                KetNoi kn = new KetNoi();
-               DataTable dt = kn.LoadDataDK("XuatNV", "@MaBS", txtMaNV.Text);
+               DataTable dt = kn.LoadDataDK("NhanVienBietMa", "@MaBS", txtMaNV.Text);
                if (dt.Rows.Count == 0)
                {
                     XtraMessageBox.Show("Không có dữ liệu để xuất");
@@ -326,16 +326,31 @@ namespace DXApplication2
                     }
                     now = now * 10 + s[i] - '0';
                }
-               if (DateTime.Now.Year - yy < 18 || DateTime.Now.Year - yy > 54)
+               if (flag == "add")
                {
-                    e.Cancel = true;
-                    dateNV.Focus();
-                    dxErrorProvider1.SetError(dateNV, "Chỉ tuyển dụng nhân viên từ 18 đến 54 tuổi");
+                    if (DateTime.Now.Year - yy < 18 || DateTime.Now.Year - yy > 54)
+                    {
+                         e.Cancel = true;
+                         dxErrorProvider1.SetError(dateNV, "Chỉ tuyển dụng nhân viên từ 18 đến 54 tuổi");
+                    }
+                    else
+                    {
+                         e.Cancel = false;
+                         dxErrorProvider1.SetError(dateNV, null);
+                    }
                }
-               else
+               if (flag == "edit")
                {
-                    e.Cancel = false;
-                    dxErrorProvider1.SetError(dateNV, null);
+                    if (DateTime.Now.Year - yy < 18 || DateTime.Now.Year - yy > 54)
+                    {
+                         e.Cancel = true;
+                         dxErrorProvider1.SetError(dateNV, "Chỉ được sửa thành ngày sinh mới trong khoảng từ 18 đến 54 tuổi");
+                    }
+                    else
+                    {
+                         e.Cancel = false;
+                         dxErrorProvider1.SetError(dateNV, null);
+                    }
                }
           }
      }

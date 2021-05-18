@@ -30,14 +30,13 @@ namespace DXApplication2
           private void InitializeComponent()
           {
                this.components = new System.ComponentModel.Container();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBacSi));
+               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+               System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
                this.btnThemBS = new DevExpress.XtraEditors.SimpleButton();
                this.btnSuaBS = new DevExpress.XtraEditors.SimpleButton();
                this.btnXoaBS = new DevExpress.XtraEditors.SimpleButton();
@@ -65,18 +64,18 @@ namespace DXApplication2
                this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
                this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
                this.btnBCBS = new DevExpress.XtraEditors.SimpleButton();
-               this.SDTBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-               this.TrinhDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-               this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-               this.NSBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-               this.HoTenBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-               this.MaBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-               this.STTBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
                this.dataBacSi = new System.Windows.Forms.DataGridView();
                this.pictureBox1 = new System.Windows.Forms.PictureBox();
                this.btnBSNghiHuu = new DevExpress.XtraEditors.SimpleButton();
                this.btnThoatBS = new DevExpress.XtraEditors.SimpleButton();
                this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+               this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+               this.MaBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+               this.HoTenBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+               this.NSBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+               this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+               this.TrinhDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+               this.SDTBS = new System.Windows.Forms.DataGridViewTextBoxColumn();
                ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
                this.layoutControl2.SuspendLayout();
                ((System.ComponentModel.ISupportInitialize)(this.txtMaBS.Properties)).BeginInit();
@@ -377,82 +376,12 @@ namespace DXApplication2
                this.btnBCBS.Text = "Xuất báo cáo";
                this.btnBCBS.Click += new System.EventHandler(this.btnBCBS_Click);
                // 
-               // SDTBS
-               // 
-               this.SDTBS.DataPropertyName = "SDT";
-               dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.SDTBS.DefaultCellStyle = dataGridViewCellStyle8;
-               this.SDTBS.HeaderText = "SĐT";
-               this.SDTBS.MinimumWidth = 6;
-               this.SDTBS.Name = "SDTBS";
-               this.SDTBS.Width = 135;
-               // 
-               // TrinhDo
-               // 
-               this.TrinhDo.DataPropertyName = "TrinhDo";
-               dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.TrinhDo.DefaultCellStyle = dataGridViewCellStyle9;
-               this.TrinhDo.HeaderText = "Trình độ";
-               this.TrinhDo.MinimumWidth = 6;
-               this.TrinhDo.Name = "TrinhDo";
-               this.TrinhDo.Width = 120;
-               // 
-               // GioiTinh
-               // 
-               this.GioiTinh.DataPropertyName = "GioiTinh";
-               dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.GioiTinh.DefaultCellStyle = dataGridViewCellStyle10;
-               this.GioiTinh.HeaderText = "Giới tính";
-               this.GioiTinh.MinimumWidth = 6;
-               this.GioiTinh.Name = "GioiTinh";
-               this.GioiTinh.Width = 120;
-               // 
-               // NSBS
-               // 
-               this.NSBS.DataPropertyName = "NgaySinh";
-               dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.NSBS.DefaultCellStyle = dataGridViewCellStyle11;
-               this.NSBS.HeaderText = "Ngày sinh";
-               this.NSBS.MinimumWidth = 6;
-               this.NSBS.Name = "NSBS";
-               this.NSBS.Width = 130;
-               // 
-               // HoTenBS
-               // 
-               this.HoTenBS.DataPropertyName = "HoTenBS";
-               dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.HoTenBS.DefaultCellStyle = dataGridViewCellStyle12;
-               this.HoTenBS.HeaderText = "Họ tên bác sĩ";
-               this.HoTenBS.MinimumWidth = 6;
-               this.HoTenBS.Name = "HoTenBS";
-               this.HoTenBS.Width = 210;
-               // 
-               // MaBS
-               // 
-               this.MaBS.DataPropertyName = "MaBS";
-               dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.MaBS.DefaultCellStyle = dataGridViewCellStyle13;
-               this.MaBS.HeaderText = "Mã bác sĩ";
-               this.MaBS.MinimumWidth = 6;
-               this.MaBS.Name = "MaBS";
-               this.MaBS.Width = 120;
-               // 
-               // STTBS
-               // 
-               this.STTBS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-               dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.STTBS.DefaultCellStyle = dataGridViewCellStyle14;
-               this.STTBS.HeaderText = "STT";
-               this.STTBS.MinimumWidth = 6;
-               this.STTBS.Name = "STTBS";
-               this.STTBS.Width = 70;
-               // 
                // dataBacSi
                // 
                this.dataBacSi.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
                this.dataBacSi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
                this.dataBacSi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STTBS,
+            this.Column1,
             this.MaBS,
             this.HoTenBS,
             this.NSBS,
@@ -497,6 +426,73 @@ namespace DXApplication2
                // dxErrorProvider1
                // 
                this.dxErrorProvider1.ContainerControl = this;
+               // 
+               // Column1
+               // 
+               this.Column1.HeaderText = "STT";
+               this.Column1.MinimumWidth = 6;
+               this.Column1.Name = "Column1";
+               this.Column1.Width = 65;
+               // 
+               // MaBS
+               // 
+               this.MaBS.DataPropertyName = "MaBS";
+               dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.MaBS.DefaultCellStyle = dataGridViewCellStyle1;
+               this.MaBS.HeaderText = "Mã bác sĩ";
+               this.MaBS.MinimumWidth = 6;
+               this.MaBS.Name = "MaBS";
+               this.MaBS.Width = 120;
+               // 
+               // HoTenBS
+               // 
+               this.HoTenBS.DataPropertyName = "HoTenBS";
+               dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.HoTenBS.DefaultCellStyle = dataGridViewCellStyle2;
+               this.HoTenBS.HeaderText = "Họ tên bác sĩ";
+               this.HoTenBS.MinimumWidth = 6;
+               this.HoTenBS.Name = "HoTenBS";
+               this.HoTenBS.Width = 210;
+               // 
+               // NSBS
+               // 
+               this.NSBS.DataPropertyName = "NgaySinh";
+               dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.NSBS.DefaultCellStyle = dataGridViewCellStyle3;
+               this.NSBS.HeaderText = "Ngày sinh";
+               this.NSBS.MinimumWidth = 6;
+               this.NSBS.Name = "NSBS";
+               this.NSBS.Width = 130;
+               // 
+               // GioiTinh
+               // 
+               this.GioiTinh.DataPropertyName = "GioiTinh";
+               dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.GioiTinh.DefaultCellStyle = dataGridViewCellStyle4;
+               this.GioiTinh.HeaderText = "Giới tính";
+               this.GioiTinh.MinimumWidth = 6;
+               this.GioiTinh.Name = "GioiTinh";
+               this.GioiTinh.Width = 120;
+               // 
+               // TrinhDo
+               // 
+               this.TrinhDo.DataPropertyName = "TrinhDo";
+               dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.TrinhDo.DefaultCellStyle = dataGridViewCellStyle5;
+               this.TrinhDo.HeaderText = "Trình độ";
+               this.TrinhDo.MinimumWidth = 6;
+               this.TrinhDo.Name = "TrinhDo";
+               this.TrinhDo.Width = 120;
+               // 
+               // SDTBS
+               // 
+               this.SDTBS.DataPropertyName = "SDT";
+               dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.SDTBS.DefaultCellStyle = dataGridViewCellStyle6;
+               this.SDTBS.HeaderText = "SĐT";
+               this.SDTBS.MinimumWidth = 6;
+               this.SDTBS.Name = "SDTBS";
+               this.SDTBS.Width = 135;
                // 
                // FormBacSi
                // 
@@ -576,17 +572,17 @@ namespace DXApplication2
           private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
           private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
           private DevExpress.XtraEditors.SimpleButton btnBCBS;
-          private System.Windows.Forms.DataGridViewTextBoxColumn SDTBS;
-          private System.Windows.Forms.DataGridViewTextBoxColumn TrinhDo;
-          private System.Windows.Forms.DataGridViewTextBoxColumn GioiTinh;
-          private System.Windows.Forms.DataGridViewTextBoxColumn NSBS;
-          private System.Windows.Forms.DataGridViewTextBoxColumn HoTenBS;
-          private System.Windows.Forms.DataGridViewTextBoxColumn MaBS;
-          private System.Windows.Forms.DataGridViewTextBoxColumn STTBS;
-          private System.Windows.Forms.DataGridView dataBacSi;
+          public System.Windows.Forms.DataGridView dataBacSi;
           private System.Windows.Forms.PictureBox pictureBox1;
           private DevExpress.XtraEditors.SimpleButton btnBSNghiHuu;
           private DevExpress.XtraEditors.SimpleButton btnThoatBS;
           private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
+          private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+          private System.Windows.Forms.DataGridViewTextBoxColumn MaBS;
+          private System.Windows.Forms.DataGridViewTextBoxColumn HoTenBS;
+          private System.Windows.Forms.DataGridViewTextBoxColumn NSBS;
+          private System.Windows.Forms.DataGridViewTextBoxColumn GioiTinh;
+          private System.Windows.Forms.DataGridViewTextBoxColumn TrinhDo;
+          private System.Windows.Forms.DataGridViewTextBoxColumn SDTBS;
      }
 }

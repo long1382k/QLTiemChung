@@ -91,6 +91,8 @@ namespace DXApplication2
                     KetNoi kn = new KetNoi();
                     chartControlYTa.DataSource = kn.LoadDataTK("ThanhTichYta", dateFromYTa.Text, dateToYTa.Text);
                     chartControlYTa.Show();
+                    chartControlTLYTa.DataSource = kn.LoadDataTK("TiLeThanhTichYTa", dateFromYTa.Text, dateToYTa.Text);
+                    chartControlTLYTa.Show();
                     labelTTYTa.Text = "Hiển thị biểu đồ thành tích lập hóa đơn của nhân viên từ " + dateFromYTa.Text + " đến " + dateToYTa.Text;
                }
                catch (Exception ex)

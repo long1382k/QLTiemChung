@@ -29,8 +29,11 @@ namespace DXApplication2
           /// </summary>
           private void InitializeComponent()
           {
+               this.components = new System.ComponentModel.Container();
                DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
                DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+               DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+               DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
                this.dataTKTTYTa = new System.Windows.Forms.DataGridView();
                this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
                this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +61,13 @@ namespace DXApplication2
                this.labelTTYTa = new DevExpress.XtraEditors.LabelControl();
                this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
                this.chartControlYTa = new DevExpress.XtraCharts.ChartControl();
+               this.tiLeThanhTichYTaTableAdapter = new QLTiemChung.TiemChungDataSet2TableAdapters.TiLeThanhTichYTaTableAdapter();
+               this.thanhTichYTaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+               this.tiemChungDataSet3 = new QLTiemChung.TiemChungDataSet3();
+               this.chartControlTLYTa = new DevExpress.XtraCharts.ChartControl();
+               this.tiLeThanhTichYTaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+               this.tiemChungDataSet2 = new QLTiemChung.TiemChungDataSet2();
+               this.thanhTichYTaTableAdapter = new QLTiemChung.TiemChungDataSet3TableAdapters.ThanhTichYTaTableAdapter();
                ((System.ComponentModel.ISupportInitialize)(this.dataTKTTYTa)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
                this.layoutControl1.SuspendLayout();
@@ -79,6 +89,13 @@ namespace DXApplication2
                ((System.ComponentModel.ISupportInitialize)(this.chartControlYTa)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.thanhTichYTaBindingSource)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet3)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.chartControlTLYTa)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiLeThanhTichYTaBindingSource)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet2)).BeginInit();
                this.SuspendLayout();
                // 
                // dataTKTTYTa
@@ -97,7 +114,7 @@ namespace DXApplication2
                this.dataTKTTYTa.Name = "dataTKTTYTa";
                this.dataTKTTYTa.RowHeadersWidth = 51;
                this.dataTKTTYTa.RowTemplate.Height = 24;
-               this.dataTKTTYTa.Size = new System.Drawing.Size(935, 559);
+               this.dataTKTTYTa.Size = new System.Drawing.Size(935, 607);
                this.dataTKTTYTa.TabIndex = 0;
                // 
                // Column1
@@ -157,7 +174,7 @@ namespace DXApplication2
                // 
                // btnXuatTTYTa
                // 
-               this.btnXuatTTYTa.Location = new System.Drawing.Point(457, 751);
+               this.btnXuatTTYTa.Location = new System.Drawing.Point(455, 797);
                this.btnXuatTTYTa.Name = "btnXuatTTYTa";
                this.btnXuatTTYTa.Size = new System.Drawing.Size(94, 29);
                this.btnXuatTTYTa.TabIndex = 1;
@@ -179,26 +196,26 @@ namespace DXApplication2
                // dateFromYTa
                // 
                this.dateFromYTa.EditValue = null;
-               this.dateFromYTa.Location = new System.Drawing.Point(63, 50);
+               this.dateFromYTa.Location = new System.Drawing.Point(59, 50);
                this.dateFromYTa.Name = "dateFromYTa";
                this.dateFromYTa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
                this.dateFromYTa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-               this.dateFromYTa.Size = new System.Drawing.Size(280, 22);
+               this.dateFromYTa.Size = new System.Drawing.Size(284, 22);
                this.dateFromYTa.StyleController = this.layoutControl1;
                this.dateFromYTa.TabIndex = 4;
                // 
                // dateToYTa
                // 
                this.dateToYTa.EditValue = null;
-               this.dateToYTa.Location = new System.Drawing.Point(384, 50);
+               this.dateToYTa.Location = new System.Drawing.Point(382, 50);
                this.dateToYTa.Name = "dateToYTa";
                this.dateToYTa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
                this.dateToYTa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-               this.dateToYTa.Size = new System.Drawing.Size(283, 22);
+               this.dateToYTa.Size = new System.Drawing.Size(287, 22);
                this.dateToYTa.StyleController = this.layoutControl1;
                this.dateToYTa.TabIndex = 5;
                // 
@@ -219,7 +236,7 @@ namespace DXApplication2
             this.layoutControlItem2});
                this.layoutTKTTYTa.Location = new System.Drawing.Point(0, 0);
                this.layoutTKTTYTa.Name = "layoutTKTTYTa";
-               this.layoutTKTTYTa.Size = new System.Drawing.Size(671, 100);
+               this.layoutTKTTYTa.Size = new System.Drawing.Size(673, 100);
                this.layoutTKTTYTa.Text = "Thành tích tiêm vaccine của y tá trong khoảng thời gian";
                // 
                // layoutControlItem1
@@ -227,16 +244,16 @@ namespace DXApplication2
                this.layoutControlItem1.Control = this.dateFromYTa;
                this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
                this.layoutControlItem1.Name = "layoutControlItem1";
-               this.layoutControlItem1.Size = new System.Drawing.Size(321, 50);
+               this.layoutControlItem1.Size = new System.Drawing.Size(323, 50);
                this.layoutControlItem1.Text = "Từ";
                this.layoutControlItem1.TextSize = new System.Drawing.Size(23, 17);
                // 
                // layoutControlItem2
                // 
                this.layoutControlItem2.Control = this.dateToYTa;
-               this.layoutControlItem2.Location = new System.Drawing.Point(321, 0);
+               this.layoutControlItem2.Location = new System.Drawing.Point(323, 0);
                this.layoutControlItem2.Name = "layoutControlItem2";
-               this.layoutControlItem2.Size = new System.Drawing.Size(324, 50);
+               this.layoutControlItem2.Size = new System.Drawing.Size(326, 50);
                this.layoutControlItem2.Text = "đến";
                this.layoutControlItem2.TextSize = new System.Drawing.Size(23, 17);
                // 
@@ -251,12 +268,12 @@ namespace DXApplication2
                // 
                // searchLookUpTTYTa
                // 
-               this.searchLookUpTTYTa.Location = new System.Drawing.Point(146, 12);
+               this.searchLookUpTTYTa.Location = new System.Drawing.Point(143, 12);
                this.searchLookUpTTYTa.Name = "searchLookUpTTYTa";
                this.searchLookUpTTYTa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
                this.searchLookUpTTYTa.Properties.PopupView = this.searchLookUpEdit1View;
-               this.searchLookUpTTYTa.Size = new System.Drawing.Size(537, 22);
+               this.searchLookUpTTYTa.Size = new System.Drawing.Size(541, 22);
                this.searchLookUpTTYTa.StyleController = this.layoutControl2;
                this.searchLookUpTTYTa.TabIndex = 4;
                // 
@@ -293,7 +310,7 @@ namespace DXApplication2
                this.layoutControlItem3.Control = this.searchLookUpTTYTa;
                this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
                this.layoutControlItem3.Name = "layoutControlItem3";
-               this.layoutControlItem3.Size = new System.Drawing.Size(674, 26);
+               this.layoutControlItem3.Size = new System.Drawing.Size(676, 26);
                this.layoutControlItem3.Text = "Thông tin tìm kiếm:";
                this.layoutControlItem3.TextSize = new System.Drawing.Size(119, 17);
                // 
@@ -302,12 +319,12 @@ namespace DXApplication2
                this.emptySpaceItem1.AllowHotTrack = false;
                this.emptySpaceItem1.Location = new System.Drawing.Point(0, 26);
                this.emptySpaceItem1.Name = "emptySpaceItem1";
-               this.emptySpaceItem1.Size = new System.Drawing.Size(674, 74);
+               this.emptySpaceItem1.Size = new System.Drawing.Size(676, 74);
                this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
                // 
                // btnBieuDoYTa
                // 
-               this.btnBieuDoYTa.Location = new System.Drawing.Point(1522, 751);
+               this.btnBieuDoYTa.Location = new System.Drawing.Point(1517, 797);
                this.btnBieuDoYTa.Name = "btnBieuDoYTa";
                this.btnBieuDoYTa.Size = new System.Drawing.Size(94, 29);
                this.btnBieuDoYTa.TabIndex = 7;
@@ -333,6 +350,8 @@ namespace DXApplication2
                // chartControlYTa
                // 
                this.chartControlYTa.AppearanceNameSerializable = "Chameleon";
+               this.chartControlYTa.DataAdapter = this.tiLeThanhTichYTaTableAdapter;
+               this.chartControlYTa.DataSource = this.thanhTichYTaBindingSource;
                xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
                xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
                this.chartControlYTa.Diagram = xyDiagram1;
@@ -344,14 +363,63 @@ namespace DXApplication2
                series1.ValueDataMembersSerializable = "TongSoPhieuTiem";
                this.chartControlYTa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
-               this.chartControlYTa.SeriesTemplate.ValueDataMembersSerializable = "TongSoPhieuTiem";
-               this.chartControlYTa.Size = new System.Drawing.Size(1198, 559);
+               this.chartControlYTa.Size = new System.Drawing.Size(1173, 313);
                this.chartControlYTa.TabIndex = 10;
+               // 
+               // tiLeThanhTichYTaTableAdapter
+               // 
+               this.tiLeThanhTichYTaTableAdapter.ClearBeforeFill = true;
+               // 
+               // thanhTichYTaBindingSource
+               // 
+               this.thanhTichYTaBindingSource.DataMember = "ThanhTichYTa";
+               this.thanhTichYTaBindingSource.DataSource = this.tiemChungDataSet3;
+               // 
+               // tiemChungDataSet3
+               // 
+               this.tiemChungDataSet3.DataSetName = "TiemChungDataSet3";
+               this.tiemChungDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+               // 
+               // chartControlTLYTa
+               // 
+               this.chartControlTLYTa.DataAdapter = this.tiLeThanhTichYTaTableAdapter;
+               this.chartControlTLYTa.DataSource = this.tiLeThanhTichYTaBindingSource;
+               this.chartControlTLYTa.Legend.AlignmentVertical = DevExpress.XtraCharts.LegendAlignmentVertical.Center;
+               this.chartControlTLYTa.Legend.Title.Text = "Tỉ lệ phần trăm số phiếu tiêm";
+               this.chartControlTLYTa.Legend.Title.Visible = true;
+               this.chartControlTLYTa.Legend.Title.WordWrap = true;
+               this.chartControlTLYTa.Location = new System.Drawing.Point(969, 488);
+               this.chartControlTLYTa.Name = "chartControlTLYTa";
+               this.chartControlTLYTa.PaletteName = "Metro";
+               series2.ArgumentDataMember = "MaYTa";
+               series2.LegendTextPattern = "{A}: {VP:P}";
+               series2.Name = "Series 1";
+               series2.ValueDataMembersSerializable = "TiLeSoPhieuTiem";
+               series2.View = pieSeriesView1;
+               this.chartControlTLYTa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series2};
+               this.chartControlTLYTa.Size = new System.Drawing.Size(1170, 294);
+               this.chartControlTLYTa.TabIndex = 11;
+               // 
+               // tiLeThanhTichYTaBindingSource
+               // 
+               this.tiLeThanhTichYTaBindingSource.DataMember = "TiLeThanhTichYTa";
+               this.tiLeThanhTichYTaBindingSource.DataSource = this.tiemChungDataSet2;
+               // 
+               // tiemChungDataSet2
+               // 
+               this.tiemChungDataSet2.DataSetName = "TiemChungDataSet2";
+               this.tiemChungDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+               // 
+               // thanhTichYTaTableAdapter
+               // 
+               this.thanhTichYTaTableAdapter.ClearBeforeFill = true;
                // 
                // FormTK_ThanhTichYTa
                // 
                this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+               this.Controls.Add(this.chartControlTLYTa);
                this.Controls.Add(this.chartControlYTa);
                this.Controls.Add(this.labelControl1);
                this.Controls.Add(this.labelTTYTa);
@@ -384,6 +452,13 @@ namespace DXApplication2
                ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
                ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
                ((System.ComponentModel.ISupportInitialize)(this.chartControlYTa)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.thanhTichYTaBindingSource)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet3)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.chartControlTLYTa)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiLeThanhTichYTaBindingSource)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet2)).EndInit();
                this.ResumeLayout(false);
                this.PerformLayout();
 
@@ -418,5 +493,12 @@ namespace DXApplication2
           private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
           private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
           private DevExpress.XtraCharts.ChartControl chartControlYTa;
+          private QLTiemChung.TiemChungDataSet2TableAdapters.TiLeThanhTichYTaTableAdapter tiLeThanhTichYTaTableAdapter;
+          private QLTiemChung.TiemChungDataSet2 tiemChungDataSet2;
+          private DevExpress.XtraCharts.ChartControl chartControlTLYTa;
+          private System.Windows.Forms.BindingSource tiLeThanhTichYTaBindingSource;
+          private System.Windows.Forms.BindingSource thanhTichYTaBindingSource;
+          private QLTiemChung.TiemChungDataSet3 tiemChungDataSet3;
+          private QLTiemChung.TiemChungDataSet3TableAdapters.ThanhTichYTaTableAdapter thanhTichYTaTableAdapter;
      }
 }

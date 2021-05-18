@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.XtraCharts;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,6 @@ namespace DXApplication2
                {
                     dataTKTTBS.Rows[i].Cells[0].Value = i + 1;
                }
-               kn.OpenConnection();
                DataTable dt = kn.LoadDataTK("ThanhTichBS", dateFromBS.Text, dateToBS.Text);
                dt.Columns["MaBS"].ColumnName = "Mã bác sĩ";
                dt.Columns["HoTenBS"].ColumnName = "Họ tên bác sĩ";
@@ -82,6 +82,8 @@ namespace DXApplication2
                     KetNoi kn = new KetNoi();
                     chartControlBS.DataSource = kn.LoadDataTK("ThanhTichBS", dateFromBS.Text, dateToBS.Text);
                     chartControlBS.Show();
+                    chartControlTLBS.DataSource = kn.LoadDataTK("TiLeThanhTichBS", dateFromBS.Text, dateToBS.Text);
+                    chartControlTLBS.Show();
                     labelTTBS.Text = "Hiển thị biểu đồ thành tích kiểm tra sức khỏe của bác sĩ từ " + dateFromBS.Text + " đến " + dateToBS.Text;                      //hiển thị năm trên label
                }
                catch (Exception ex)
@@ -104,6 +106,7 @@ namespace DXApplication2
                     XtraMessageBox.Show("Xuất thành công");
                }
           }
+          
 
      }
 }

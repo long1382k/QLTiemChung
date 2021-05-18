@@ -32,8 +32,8 @@ namespace DXApplication2
           public FormYTa()
           {
                InitializeComponent();
-               DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Xmas 2008 Blue");
                dataYTa.ReadOnly = true;
+               getData();
           }
           public void getData()
           {
@@ -43,7 +43,7 @@ namespace DXApplication2
                {
                     dataYTa.Rows[i].Cells[0].Value = i + 1;
                }
-               kn.OpenConnection();
+               dataYTa.Refresh();
           }
           public void getDataTimKiem()
           {
@@ -53,7 +53,6 @@ namespace DXApplication2
                {
                     dataYTa.Rows[i].Cells[0].Value = i + 1;
                }
-               kn.OpenConnection();
           }
           public void TaoMaYTaMoi()
           {
@@ -75,13 +74,13 @@ namespace DXApplication2
                     txtMaYTa.Text = "";
           }
           public void khoa()
-
           {
                btnThemYTa.Enabled = true;
                btnSuaYTa.Enabled = true;
                btnXoaYTa.Enabled = true;
                btnLuuYTa.Enabled = false;
                btnHuyYTa.Enabled = false;
+               btnTKYT.Enabled = false;
                layoutThongTinYTa.Enabled = false;
           }
 
@@ -94,18 +93,11 @@ namespace DXApplication2
                btnXoaYTa.Enabled = false;
                btnLuuYTa.Enabled = true;
                btnHuyYTa.Enabled = true;
+               btnTKYT.Enabled = true;
                layoutThongTinYTa.Enabled = true;
-               txtMaYTa.Focus();
           }
           public bool check()
           {
-               if (string.IsNullOrWhiteSpace(txtMaYTa.Text))
-               {
-                    MessageBox.Show("Bạn chưa nhập mã", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtMaYTa.Focus();
-                    return false;
-               }
-
                if (string.IsNullOrEmpty(txtHoTenYTa.Text))
                {
                     MessageBox.Show("Bạn chưa nhập họ tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -207,7 +199,9 @@ namespace DXApplication2
                     }
                }
                getData();
-
+               khoa();
+               flag = "";
+               txtMaYTa.ReadOnly = false;
           }
 
           private void btnHuyYTa_Click(object sender, System.EventArgs e)
@@ -225,20 +219,27 @@ namespace DXApplication2
 
           private void btnTKYT_Click(object sender, System.EventArgs e)
           {
+               int i = 0;
                KetNoi kn = new KetNoi();
                kn.OpenConnection();
                dataYTa.DataSource = kn.LoadDataSearchYTa_NV("TimKiemYTa", "@MaYTa", "@HoTenYTa", "@NgaySinhYTa1", "@NgaySinhYTa2", "@GioiTinhYTa", "@SDTYTa", txtMaYTa.Text, txtHoTenYTa.Text, dateYTa.Text, dateYTa1.Text, txtGTYTa.Text, txtSDTYTa.Text);
-               for (int i = 0; i < dataYTa.Rows.Count - 1; i++)
+               for (i = 0; i < dataYTa.Rows.Count - 1; i++)
                {
                     dataYTa.Rows[i].Cells[0].Value = i + 1;
                }
-
+               if (i == 0)
+               {
+                    if (dateYTa.Text == "" || dateYTa1.Text == "")
+                         XtraMessageBox.Show("Không có y tá bạn muốn tìm trong danh sách y tá của trung tâm vì bạn chưa nhập khoảng ngày sinh của y tá");
+                    else XtraMessageBox.Show("Không có y tá bạn muốn tìm trong danh sách y tá của trung tâm");
+                    getData();
+               }
           }
 
           private void btnXuatYTa_Click(object sender, System.EventArgs e)
           {
                KetNoi kn = new KetNoi();
-               DataTable dt = kn.LoadDataDK("XuatYTa", "@MaYTa", txtMaYTa.Text);
+               DataTable dt = kn.LoadDataDK("YTaBietMa", "@MaYTa", txtMaYTa.Text);
                if (dt.Rows.Count == 0)
                {
                     XtraMessageBox.Show("Không có dữ liệu để xuất");
@@ -324,17 +325,33 @@ namespace DXApplication2
                     }
                     now = now * 10 + s[i] - '0';
                }
-               if (DateTime.Now.Year - yy < 22 || DateTime.Now.Year - yy > 54)
+               if (flag == "add")
                {
-                    e.Cancel = true;
-                    dateYTa.Focus();
-                    dxErrorProvider1.SetError(dateYTa, "Chỉ tuyển dụng y tá từ 22 đến 54 tuổi");
+                    if (DateTime.Now.Year - yy < 22 || DateTime.Now.Year - yy > 54)
+                    {
+                         e.Cancel = true;
+                         dxErrorProvider1.SetError(dateYTa, "Chỉ tuyển dụng y tá từ 22 đến 54 tuổi");
+                    }
+                    else
+                    {
+                         e.Cancel = false;
+                         dxErrorProvider1.SetError(dateYTa, null);
+                    }
                }
-               else
+               if (flag == "edit")
                {
-                    e.Cancel = false;
-                    dxErrorProvider1.SetError(dateYTa, null);
+                    if (DateTime.Now.Year - yy < 22 || DateTime.Now.Year - yy > 54)
+                    {
+                         e.Cancel = true;
+                         dxErrorProvider1.SetError(dateYTa, "Chỉ được sửa thành ngày sinh mới trong khoảng từ 22 đến 54 tuổi");
+                    }
+                    else
+                    {
+                         e.Cancel = false;
+                         dxErrorProvider1.SetError(dateYTa, null);
+                    }
                }
+               
           }
      }
 }

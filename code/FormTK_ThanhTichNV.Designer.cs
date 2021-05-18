@@ -29,8 +29,12 @@ namespace DXApplication2
           /// </summary>
           private void InitializeComponent()
           {
-               DevExpress.XtraCharts.XYDiagram xyDiagram4 = new DevExpress.XtraCharts.XYDiagram();
-               DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
+               this.components = new System.ComponentModel.Container();
+               DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+               DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+               DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+               DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel1 = new DevExpress.XtraCharts.PieSeriesLabel();
+               DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
                this.dataTKTTNV = new System.Windows.Forms.DataGridView();
                this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
                this.colum2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +62,13 @@ namespace DXApplication2
                this.labelNV = new DevExpress.XtraEditors.LabelControl();
                this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
                this.chartControlNV = new DevExpress.XtraCharts.ChartControl();
+               this.tiLeThanhTichNVTableAdapter = new QLTiemChung.TiemChungDataSet4TableAdapters.TiLeThanhTichNVTableAdapter();
+               this.thanhTichNVBindingSource = new System.Windows.Forms.BindingSource(this.components);
+               this.tiemChungDataSet5 = new QLTiemChung.TiemChungDataSet5();
+               this.chartControlTLNV = new DevExpress.XtraCharts.ChartControl();
+               this.tiLeThanhTichNVBindingSource = new System.Windows.Forms.BindingSource(this.components);
+               this.tiemChungDataSet4 = new QLTiemChung.TiemChungDataSet4();
+               this.thanhTichNVTableAdapter = new QLTiemChung.TiemChungDataSet5TableAdapters.ThanhTichNVTableAdapter();
                ((System.ComponentModel.ISupportInitialize)(this.dataTKTTNV)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
                this.layoutControl1.SuspendLayout();
@@ -77,8 +88,16 @@ namespace DXApplication2
                ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(this.chartControlNV)).BeginInit();
-               ((System.ComponentModel.ISupportInitialize)(xyDiagram4)).BeginInit();
-               ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.thanhTichNVBindingSource)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet5)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.chartControlTLNV)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiLeThanhTichNVBindingSource)).BeginInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet4)).BeginInit();
                this.SuspendLayout();
                // 
                // dataTKTTNV
@@ -97,7 +116,7 @@ namespace DXApplication2
                this.dataTKTTNV.Name = "dataTKTTNV";
                this.dataTKTTNV.RowHeadersWidth = 51;
                this.dataTKTTNV.RowTemplate.Height = 24;
-               this.dataTKTTNV.Size = new System.Drawing.Size(906, 581);
+               this.dataTKTTNV.Size = new System.Drawing.Size(906, 611);
                this.dataTKTTNV.TabIndex = 0;
                // 
                // Column1
@@ -137,7 +156,7 @@ namespace DXApplication2
                this.Column4.HeaderText = "Giới tính";
                this.Column4.MinimumWidth = 6;
                this.Column4.Name = "Column4";
-               this.Column4.Width = 85;
+               this.Column4.Width = 70;
                // 
                // Column5
                // 
@@ -242,7 +261,7 @@ namespace DXApplication2
                // 
                // btnXuatTKNV
                // 
-               this.btnXuatTKNV.Location = new System.Drawing.Point(464, 784);
+               this.btnXuatTKNV.Location = new System.Drawing.Point(446, 803);
                this.btnXuatTKNV.Name = "btnXuatTKNV";
                this.btnXuatTKNV.Size = new System.Drawing.Size(94, 29);
                this.btnXuatTKNV.TabIndex = 3;
@@ -307,7 +326,7 @@ namespace DXApplication2
                // 
                // btnBieuDoNV
                // 
-               this.btnBieuDoNV.Location = new System.Drawing.Point(1568, 784);
+               this.btnBieuDoNV.Location = new System.Drawing.Point(1563, 803);
                this.btnBieuDoNV.Name = "btnBieuDoNV";
                this.btnBieuDoNV.Size = new System.Drawing.Size(94, 29);
                this.btnBieuDoNV.TabIndex = 6;
@@ -333,26 +352,83 @@ namespace DXApplication2
                // chartControlNV
                // 
                this.chartControlNV.AppearanceNameSerializable = "Light";
-               xyDiagram4.AxisX.VisibleInPanesSerializable = "-1";
-               xyDiagram4.AxisY.VisibleInPanesSerializable = "-1";
-               xyDiagram4.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.False;
-               this.chartControlNV.Diagram = xyDiagram4;
-               this.chartControlNV.Location = new System.Drawing.Point(1081, 186);
+               this.chartControlNV.DataAdapter = this.tiLeThanhTichNVTableAdapter;
+               this.chartControlNV.DataSource = this.thanhTichNVBindingSource;
+               xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+               xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+               xyDiagram1.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.False;
+               this.chartControlNV.Diagram = xyDiagram1;
+               this.chartControlNV.Location = new System.Drawing.Point(964, 188);
                this.chartControlNV.Name = "chartControlNV";
                this.chartControlNV.PaletteName = "Blue II";
-               series4.ArgumentDataMember = "MaNV";
-               series4.Name = "Số hóa đơn";
-               series4.ValueDataMembersSerializable = "TongSoHoaDon";
+               series1.ArgumentDataMember = "MaNV";
+               series1.Name = "Số hóa đơn";
+               series1.ValueDataMembersSerializable = "TongSoHoaDon";
                this.chartControlNV.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series4};
+        series1};
                this.chartControlNV.SeriesTemplate.ArgumentDataMember = "MaNV";
-               this.chartControlNV.Size = new System.Drawing.Size(1081, 581);
+               this.chartControlNV.SeriesTemplate.ValueDataMembersSerializable = "TongSoHoaDon";
+               this.chartControlNV.Size = new System.Drawing.Size(1167, 301);
                this.chartControlNV.TabIndex = 10;
+               // 
+               // tiLeThanhTichNVTableAdapter
+               // 
+               this.tiLeThanhTichNVTableAdapter.ClearBeforeFill = true;
+               // 
+               // thanhTichNVBindingSource
+               // 
+               this.thanhTichNVBindingSource.DataMember = "ThanhTichNV";
+               this.thanhTichNVBindingSource.DataSource = this.tiemChungDataSet5;
+               // 
+               // tiemChungDataSet5
+               // 
+               this.tiemChungDataSet5.DataSetName = "TiemChungDataSet5";
+               this.tiemChungDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+               // 
+               // chartControlTLNV
+               // 
+               this.chartControlTLNV.AppearanceNameSerializable = "Nature Colors";
+               this.chartControlTLNV.DataAdapter = this.tiLeThanhTichNVTableAdapter;
+               this.chartControlTLNV.DataSource = this.tiLeThanhTichNVBindingSource;
+               this.chartControlTLNV.IndicatorsPaletteName = "Metro";
+               this.chartControlTLNV.Legend.AlignmentVertical = DevExpress.XtraCharts.LegendAlignmentVertical.Center;
+               this.chartControlTLNV.Legend.Title.Text = "Tỉ lệ phần trăm số hóa đơn";
+               this.chartControlTLNV.Legend.Title.Visible = true;
+               this.chartControlTLNV.Legend.Title.WordWrap = true;
+               this.chartControlTLNV.Location = new System.Drawing.Point(966, 492);
+               this.chartControlTLNV.Name = "chartControlTLNV";
+               this.chartControlTLNV.PaletteName = "Metro";
+               series2.ArgumentDataMember = "MaNV";
+               pieSeriesLabel1.TextAlignment = System.Drawing.StringAlignment.Far;
+               series2.Label = pieSeriesLabel1;
+               series2.LegendTextPattern = "{A}: {VP:P}";
+               series2.Name = "Series 1";
+               series2.ValueDataMembersSerializable = "TiLeSoHoaDon";
+               series2.View = pieSeriesView1;
+               this.chartControlTLNV.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series2};
+               this.chartControlTLNV.Size = new System.Drawing.Size(1167, 304);
+               this.chartControlTLNV.TabIndex = 11;
+               // 
+               // tiLeThanhTichNVBindingSource
+               // 
+               this.tiLeThanhTichNVBindingSource.DataMember = "TiLeThanhTichNV";
+               this.tiLeThanhTichNVBindingSource.DataSource = this.tiemChungDataSet4;
+               // 
+               // tiemChungDataSet4
+               // 
+               this.tiemChungDataSet4.DataSetName = "TiemChungDataSet4";
+               this.tiemChungDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+               // 
+               // thanhTichNVTableAdapter
+               // 
+               this.thanhTichNVTableAdapter.ClearBeforeFill = true;
                // 
                // FormTK_ThanhTichNV
                // 
                this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+               this.Controls.Add(this.chartControlTLNV);
                this.Controls.Add(this.chartControlNV);
                this.Controls.Add(this.labelControl2);
                this.Controls.Add(this.labelNV);
@@ -382,9 +458,17 @@ namespace DXApplication2
                ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
                ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
                ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-               ((System.ComponentModel.ISupportInitialize)(xyDiagram4)).EndInit();
-               ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
                ((System.ComponentModel.ISupportInitialize)(this.chartControlNV)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.thanhTichNVBindingSource)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet5)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.chartControlTLNV)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiLeThanhTichNVBindingSource)).EndInit();
+               ((System.ComponentModel.ISupportInitialize)(this.tiemChungDataSet4)).EndInit();
                this.ResumeLayout(false);
                this.PerformLayout();
 
@@ -411,6 +495,14 @@ namespace DXApplication2
           private DevExpress.XtraEditors.SimpleButton btnBieuDoNV;
           private DevExpress.XtraEditors.LabelControl labelNV;
           private DevExpress.XtraEditors.LabelControl labelControl2;
+          private DevExpress.XtraCharts.ChartControl chartControlNV;
+          private QLTiemChung.TiemChungDataSet4TableAdapters.TiLeThanhTichNVTableAdapter tiLeThanhTichNVTableAdapter;
+          private QLTiemChung.TiemChungDataSet4 tiemChungDataSet4;
+          private DevExpress.XtraCharts.ChartControl chartControlTLNV;
+          private System.Windows.Forms.BindingSource tiLeThanhTichNVBindingSource;
+          private System.Windows.Forms.BindingSource thanhTichNVBindingSource;
+          private QLTiemChung.TiemChungDataSet5 tiemChungDataSet5;
+          private QLTiemChung.TiemChungDataSet5TableAdapters.ThanhTichNVTableAdapter thanhTichNVTableAdapter;
           private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
           private System.Windows.Forms.DataGridViewTextBoxColumn colum2;
           private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -418,6 +510,5 @@ namespace DXApplication2
           private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
           private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
           private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-          private DevExpress.XtraCharts.ChartControl chartControlNV;
      }
 }

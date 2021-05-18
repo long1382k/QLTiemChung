@@ -67,6 +67,8 @@ namespace DXApplication2
                this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
                this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
                this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+               this.ribbonThoat = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+               this.barDangXuat = new DevExpress.XtraBars.BarButtonItem();
                ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
                ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -95,9 +97,10 @@ namespace DXApplication2
             this.barSubItem1,
             this.barButtonBS,
             this.barButtonYTa,
-            this.barButtonNV});
+            this.barButtonNV,
+            this.barDangXuat});
                this.ribbon.Location = new System.Drawing.Point(0, 0);
-               this.ribbon.MaxItemId = 19;
+               this.ribbon.MaxItemId = 20;
                this.ribbon.Name = "ribbon";
                this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonChucNang,
@@ -269,7 +272,8 @@ namespace DXApplication2
             this.ribbonVaccine,
             this.ribbonHoaDon,
             this.ribbonThongKe,
-            this.ribbonNguonCap});
+            this.ribbonNguonCap,
+            this.ribbonThoat});
                this.ribbonChucNang.Name = "ribbonChucNang";
                this.ribbonChucNang.Text = "Chức năng";
                // 
@@ -387,6 +391,20 @@ namespace DXApplication2
                this.panelControl1.Size = new System.Drawing.Size(1942, 844);
                this.panelControl1.TabIndex = 6;
                // 
+               // ribbonThoat
+               // 
+               this.ribbonThoat.ItemLinks.Add(this.barDangXuat);
+               this.ribbonThoat.Name = "ribbonThoat";
+               this.ribbonThoat.Text = "Thoát";
+               // 
+               // barDangXuat
+               // 
+               this.barDangXuat.Caption = "Đăng xuất";
+               this.barDangXuat.Id = 19;
+               this.barDangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barDangXuat.ImageOptions.Image")));
+               this.barDangXuat.Name = "barDangXuat";
+               this.barDangXuat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+               // 
                // FormMenuChinh
                // 
                this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -450,5 +468,7 @@ namespace DXApplication2
           private DevExpress.XtraBars.BarButtonItem barButtonBS;
           private DevExpress.XtraBars.BarButtonItem barButtonYTa;
           private DevExpress.XtraBars.BarButtonItem barButtonNV;
+          private DevExpress.XtraBars.BarButtonItem barDangXuat;
+          private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonThoat;
      }
 }
