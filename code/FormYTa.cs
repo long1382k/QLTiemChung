@@ -65,11 +65,11 @@ namespace DXApplication2
                s1 = Convert.ToString(dt.Rows[count - 1][0].ToString());
                s2 = Convert.ToInt32((s1.Remove(0, 2)));
                if (s2 + 1 < 10)
-                    txtMaYTa.Text = "YTa00" + (s2 + 1).ToString();
+                    txtMaYTa.Text = "YT00" + (s2 + 1).ToString();
                else if (s2 + 1 < 100)
-                    txtMaYTa.Text = "YTa0" + (s2 + 1).ToString();
+                    txtMaYTa.Text = "YT0" + (s2 + 1).ToString();
                else if (s2 + 1 < 1000)
-                    txtMaYTa.Text = "YTa" + (s2 + 1).ToString();
+                    txtMaYTa.Text = "YT" + (s2 + 1).ToString();
                else
                     txtMaYTa.Text = "";
           }
