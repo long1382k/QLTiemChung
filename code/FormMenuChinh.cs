@@ -69,5 +69,11 @@ namespace DXApplication2
                panelControl1.Controls.Add(FormNhaCungCap.Instance);
 
           }
-     }
+
+        private void barKho_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            panelControl1.Controls.Clear();
+            panelControl1.Controls.Add(FormKho.Instance);
+        }
+    }
 }
