@@ -35,6 +35,8 @@ namespace DXApplication2
                dataBacSi.ReadOnly = true;
                getData();
           }
+         
+          
           public void getData()
           {
                KetNoi kn = new KetNoi();
