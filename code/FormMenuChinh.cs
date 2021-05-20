@@ -81,5 +81,16 @@ namespace DXApplication2
             panelControl1.Controls.Clear();
             panelControl1.Controls.Add(FormVaccine.Instance);
         }
+
+        private void barLoaiVaccineStatistic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            panelControl1.Controls.Clear();
+            panelControl1.Controls.Add(FormTK_LoaiVaccine.Instance);
+        }
+
+        private void barKhoStatistic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }

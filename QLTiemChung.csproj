@@ -100,6 +100,12 @@
     <Compile Include="code\FormNhaCungCap.Designer.cs">
       <DependentUpon>FormNhaCungCap.cs</DependentUpon>
     </Compile>
+    <Compile Include="code\FormTK_LoaiVaccine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="code\FormTK_LoaiVaccine.Designer.cs">
+      <DependentUpon>FormTK_LoaiVaccine.cs</DependentUpon>
+    </Compile>
     <Compile Include="code\FormVaccine.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +175,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="code\KetNoi.cs" />
+    <Compile Include="TiemChungDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiemChungDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="code\FormBacSi.resx">
       <DependentUpon>FormBacSi.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="code\FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="code\FormTK_LoaiVaccine.resx">
+      <DependentUpon>FormTK_LoaiVaccine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="code\FormTK_ThanhTichNV.resx">
       <DependentUpon>FormTK_ThanhTichNV.cs</DependentUpon>
@@ -235,9 +249,29 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TiemChungDataSet.xsc">
+      <DependentUpon>TiemChungDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TiemChungDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TiemChungDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TiemChungDataSet.xss">
+      <DependentUpon>TiemChungDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\warehouse-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VaccineCard-250x250-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anti_virus_old_school.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

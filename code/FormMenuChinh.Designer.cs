@@ -40,7 +40,6 @@ namespace DXApplication2
             this.barPhieuTiem = new DevExpress.XtraBars.BarButtonItem();
             this.barVaccine = new DevExpress.XtraBars.BarButtonItem();
             this.barHD = new DevExpress.XtraBars.BarButtonItem();
-            this.barTKVaccine = new DevExpress.XtraBars.BarButtonItem();
             this.barTTNS = new DevExpress.XtraBars.BarButtonItem();
             this.barTKDT = new DevExpress.XtraBars.BarButtonItem();
             this.barNCC = new DevExpress.XtraBars.BarButtonItem();
@@ -51,6 +50,9 @@ namespace DXApplication2
             this.barButtonYTa = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonNV = new DevExpress.XtraBars.BarButtonItem();
             this.barKho = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
+            this.barLoaiVaccineStatistic = new DevExpress.XtraBars.BarButtonItem();
+            this.barKhoStatistic = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonChucNang = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonKhachHang = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonNhanSu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -87,7 +89,6 @@ namespace DXApplication2
             this.barPhieuTiem,
             this.barVaccine,
             this.barHD,
-            this.barTKVaccine,
             this.barTTNS,
             this.barTKDT,
             this.barNCC,
@@ -97,10 +98,13 @@ namespace DXApplication2
             this.barButtonBS,
             this.barButtonYTa,
             this.barButtonNV,
-            this.barKho});
+            this.barKho,
+            this.barSubItem2,
+            this.barLoaiVaccineStatistic,
+            this.barKhoStatistic});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 20;
+            this.ribbon.MaxItemId = 23;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonChucNang,
@@ -176,14 +180,6 @@ namespace DXApplication2
             this.barHD.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barHD.ImageOptions.Image")));
             this.barHD.Name = "barHD";
             this.barHD.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // barTKVaccine
-            // 
-            this.barTKVaccine.Caption = "Lượng vaccine";
-            this.barTKVaccine.Id = 9;
-            this.barTKVaccine.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barTKVaccine.ImageOptions.Image")));
-            this.barTKVaccine.Name = "barTKVaccine";
-            this.barTKVaccine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // barTTNS
             // 
@@ -274,6 +270,35 @@ namespace DXApplication2
             this.barKho.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barKho_ItemClick);
             // 
+            // barSubItem2
+            // 
+            this.barSubItem2.Caption = "Lượng Vaccine";
+            this.barSubItem2.Id = 20;
+            this.barSubItem2.ImageOptions.Image = global::QLTiemChung.Properties.Resources.VaccineCard_250x250_1;
+            this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLoaiVaccineStatistic),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barKhoStatistic)});
+            this.barSubItem2.Name = "barSubItem2";
+            this.barSubItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // barLoaiVaccineStatistic
+            // 
+            this.barLoaiVaccineStatistic.Caption = "Loại vaccine";
+            this.barLoaiVaccineStatistic.Id = 21;
+            this.barLoaiVaccineStatistic.ImageOptions.Image = global::QLTiemChung.Properties.Resources.anti_virus_old_school;
+            this.barLoaiVaccineStatistic.Name = "barLoaiVaccineStatistic";
+            this.barLoaiVaccineStatistic.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
+            this.barLoaiVaccineStatistic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLoaiVaccineStatistic_ItemClick);
+            // 
+            // barKhoStatistic
+            // 
+            this.barKhoStatistic.Caption = "Kho chứa vaccine";
+            this.barKhoStatistic.Id = 22;
+            this.barKhoStatistic.ImageOptions.Image = global::QLTiemChung.Properties.Resources.home_icon;
+            this.barKhoStatistic.Name = "barKhoStatistic";
+            this.barKhoStatistic.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.barKhoStatistic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barKhoStatistic_ItemClick);
+            // 
             // ribbonChucNang
             // 
             this.ribbonChucNang.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -323,7 +348,7 @@ namespace DXApplication2
             // 
             // ribbonThongKe
             // 
-            this.ribbonThongKe.ItemLinks.Add(this.barTKVaccine);
+            this.ribbonThongKe.ItemLinks.Add(this.barSubItem2);
             this.ribbonThongKe.ItemLinks.Add(this.barSubItem1);
             this.ribbonThongKe.ItemLinks.Add(this.barTKDT);
             this.ribbonThongKe.Name = "ribbonThongKe";
@@ -456,7 +481,6 @@ namespace DXApplication2
           private DevExpress.XtraBars.BarButtonItem barPhieuTiem;
           private DevExpress.XtraBars.BarButtonItem barVaccine;
           private DevExpress.XtraBars.BarButtonItem barHD;
-          private DevExpress.XtraBars.BarButtonItem barTKVaccine;
           private DevExpress.XtraBars.BarButtonItem barTTNS;
           private DevExpress.XtraBars.BarButtonItem barTKDT;
           private DevExpress.XtraBars.BarButtonItem barNCC;
@@ -473,5 +497,8 @@ namespace DXApplication2
           private DevExpress.XtraBars.BarButtonItem barButtonYTa;
           private DevExpress.XtraBars.BarButtonItem barButtonNV;
         private DevExpress.XtraBars.BarButtonItem barKho;
+        private DevExpress.XtraBars.BarSubItem barSubItem2;
+        private DevExpress.XtraBars.BarButtonItem barLoaiVaccineStatistic;
+        private DevExpress.XtraBars.BarButtonItem barKhoStatistic;
     }
 }

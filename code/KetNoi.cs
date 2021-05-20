@@ -664,5 +664,34 @@ namespace DXApplication2
                 connection.Close();
             }
         }
-     }
+        public DataTable LoadDataVaccineDK(string proc, string param, string value)
+        {
+            DataTable table = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = proc;
+            command.Parameters.AddWithValue(param, SqlDbType.NVarChar).Value = value;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(table);
+            connection.Close();
+            return table;
+        }
+        public void HuyVaccine(string proc, string MaVaccine)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand(proc, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaVaccine", SqlDbType.VarChar).Value = MaVaccine;
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+                connection.Close();
+            }
+        }
+    }
 }

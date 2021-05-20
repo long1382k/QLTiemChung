@@ -33,5 +33,27 @@ namespace QLTiemChung.Properties {
                 return ((string)(this["TiemChungConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-3PM2V18\\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Secur" +
+            "ity=True")]
+        public string TiemChungConnectionString1 {
+            get {
+                return ((string)(this["TiemChungConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-MCB6N7D\\SQLEXPRESS;Initial Catalog=TiemChung;Integrated Secur" +
+            "ity=True")]
+        public string TiemChungConnectionString2 {
+            get {
+                return ((string)(this["TiemChungConnectionString2"]));
+            }
+        }
     }
 }

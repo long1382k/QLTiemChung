@@ -98,6 +98,6 @@ namespace DXApplication2
                     XtraMessageBox.Show(ex.Message);
                }
           }
-     }
+    }
 }
           
